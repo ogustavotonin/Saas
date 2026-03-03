@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="two-col">
+<form class="card" method="post" action="/maintenances">
+  <h3>Registrar manutenção (apenas assinaturas ativas)</h3>
+  <input name="title" placeholder="Título" required>
+  <textarea name="notes" placeholder="Detalhes"></textarea>
+  <select name="client_id" required>{% for c in clients %}<option value="{{c.id}}">{{c.name}}</option>{% endfor %}</select>
+  {% if not clients %}<p>Não há clientes com assinatura ativa no momento.</p>{% endif %}
+  <input name="maintenance_date" type="date" required>
+  <button type="submit">Salvar</button>
+</form>
+<div class="card"><h3>Histórico (clientes com assinatura ativa)</h3>
+<table><tr><th>Cliente ID</th><th>Título</th><th>Data</th><th>Notas</th><th>Ações</th></tr>
+{% for m in maintenances %}
+<tr><td>{{m.client_id}}</td><td>{{m.title}}</td><td>{{m.date}}</td><td>{{m.notes}}</td>
+<td class="actions"><a class="btn" href="/maintenances/{{m.id}}/edit">Editar</a><form method="post" action="/maintenances/{{m.id}}/delete"><button class="btn danger">Excluir</button></form></td></tr>
+{% endfor %}
+</table></div></div>
+{% endblock %}

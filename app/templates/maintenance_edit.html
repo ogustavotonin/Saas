@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<form class="card max-600" method="post" action="/maintenances/{{maintenance.id}}/edit">
+  <h3>Editar manutenção</h3>
+  <input name="title" value="{{maintenance.title}}" required>
+  <textarea name="notes">{{maintenance.notes}}</textarea>
+  <select name="client_id" required>{% for c in clients %}<option value="{{c.id}}" {% if c.id == maintenance.client_id %}selected{% endif %}>{{c.name}}</option>{% endfor %}</select>
+  <input name="maintenance_date" type="date" value="{{maintenance.date}}" required>
+  <button type="submit">Salvar alterações</button>
+</form>
+{% endblock %}

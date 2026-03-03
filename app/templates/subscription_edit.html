@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<form class="card max-600" method="post" action="/subscriptions/{{subscription.id}}/edit">
+  <h3>Editar assinatura</h3>
+  <select name="client_id" required>{% for c in clients %}<option value="{{c.id}}" {% if c.id == subscription.client_id %}selected{% endif %}>{{c.name}}</option>{% endfor %}</select>
+  <select name="status_value"><option value="ativa" {% if subscription.status == 'ativa' %}selected{% endif %}>Ativa</option><option value="inativa" {% if subscription.status == 'inativa' %}selected{% endif %}>Inativa</option></select>
+  <input name="start_date_value" type="date" value="{{subscription.start_date}}" required>
+  <input name="end_date_value" type="date" value="{{subscription.end_date}}" required>
+  <input name="monthly_fee" type="number" step="0.01" value="{{subscription.monthly_fee}}" required>
+  <button type="submit">Salvar alterações</button>
+</form>
+{% endblock %}
