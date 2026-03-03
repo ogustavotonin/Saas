@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="two-col">
+<form class="card" method="post" action="/subscriptions">
+  <h3>Nova assinatura</h3>
+  <select name="client_id" required>{% for c in clients %}<option value="{{c.id}}">{{c.name}}</option>{% endfor %}</select>
+  <select name="status_value"><option value="ativa">Ativa</option><option value="inativa">Inativa</option></select>
+  <input name="start_date_value" type="date" required>
+  <input name="end_date_value" type="date" required>
+  <input name="monthly_fee" type="number" step="0.01" placeholder="Mensalidade" required>
+  <button type="submit">Salvar</button>
+</form>
+<div class="card"><h3>Assinaturas</h3>
+<table><tr><th>Cliente ID</th><th>Status</th><th>Início</th><th>Fim</th><th>Mensalidade</th><th>Ações</th></tr>
+{% for s in subscriptions %}
+<tr><td>{{s.client_id}}</td><td>{{s.status}}</td><td>{{s.start_date}}</td><td>{{s.end_date}}</td><td>R$ {{'%.2f'|format(s.monthly_fee)}}</td>
+<td class="actions"><a class="btn" href="/subscriptions/{{s.id}}/edit">Editar</a><form method="post" action="/subscriptions/{{s.id}}/delete"><button class="btn danger">Excluir</button></form></td></tr>
+{% endfor %}
+</table></div>
+</div>
+{% endblock %}
