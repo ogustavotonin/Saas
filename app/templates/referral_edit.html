@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<form class="card max-600" method="post" action="/referrals/{{referral.id}}/edit">
+  <h3>Editar indicação</h3>
+  <input name="referrer_name" value="{{referral.referrer_name}}" required>
+  <input name="referrer_email" value="{{referral.referrer_email}}" required>
+  <select name="referred_client_id" required>{% for c in clients %}<option value="{{c.id}}" {% if c.id == referral.referred_client_id %}selected{% endif %}>{{c.name}}</option>{% endfor %}</select>
+  <input name="sale_value" type="number" step="0.01" value="{{referral.sale_value}}" required>
+  <input name="bonus_percentage" type="number" step="0.1" value="{{referral.bonus_percentage}}" required>
+  <button type="submit">Salvar alterações</button>
+</form>
+{% endblock %}
