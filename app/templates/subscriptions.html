@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card"><h3>Assinaturas</h3>
+<table><tr><th>Cliente ID</th><th>Status</th><th>Início</th><th>Fim</th><th>Mensalidade</th></tr>
+{% for s in subscriptions %}<tr><td>{{s.client_id}}</td><td>{{s.status}}</td><td>{{s.start_date}}</td><td>{{s.end_date}}</td><td>R$ {{'%.2f'|format(s.monthly_fee)}}</td></tr>{% endfor %}
+</table></div>
+{% endblock %}
