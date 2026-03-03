@@ -33,24 +33,3 @@ async def send_to_autentique(contract_payload: dict[str, Any], token: str | None
             json=contract_payload,
             headers=headers,
         )
-
-
-async def import_agendor_deals(token: str | None) -> list[dict[str, Any]]:
-    if not token:
-        return []
-    headers = {"Authorization": f"Token {token}"}
-    async with httpx.AsyncClient(timeout=15) as client:
-        response = await client.get("https://api.agendor.com.br/v3/deals", headers=headers)
-        response.raise_for_status()
-        payload = response.json()
-        if isinstance(payload, list):
-            return payload
-        return payload.get("data", [])
-
-
-async def send_referral_deal_to_agendor(token: str | None, referral_payload: dict[str, Any]) -> None:
-    if not token:
-        return
-    headers = {"Authorization": f"Token {token}"}
-    async with httpx.AsyncClient(timeout=15) as client:
-        await client.post("https://api.agendor.com.br/v3/deals", headers=headers, json=referral_payload)

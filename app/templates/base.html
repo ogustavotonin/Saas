@@ -7,27 +7,17 @@
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-  <header class="topbar">
-    <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menu">☰</button>
+  <header>
     <h1>NexusCore Micro SaaS</h1>
+    <nav>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/clients">Clientes</a>
+      <a href="/referrals">Indicações</a>
+      <a href="/subscriptions">Assinaturas</a>
+      <a href="/maintenances">Manutenções</a>
+      <a href="/logout">Sair</a>
+    </nav>
   </header>
-
-  <aside class="sidebar" id="sidebar">
-    <a href="/dashboard">Dashboard</a>
-    <a href="/clients">Clientes</a>
-    <a href="/referrals">Indicações</a>
-    <a href="/subscriptions">Assinaturas</a>
-    <a href="/maintenances">Manutenções</a>
-    <a href="/integrations">Integrações</a>
-    <a href="/logout">Sair</a>
-  </aside>
-
-  <main class="content">{% block content %}{% endblock %}</main>
-
-  <script>
-    const btn = document.getElementById('hamburgerBtn');
-    const sidebar = document.getElementById('sidebar');
-    btn?.addEventListener('click', () => sidebar.classList.toggle('open'));
-  </script>
+  <main>{% block content %}{% endblock %}</main>
 </body>
 </html>

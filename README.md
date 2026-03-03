@@ -41,16 +41,18 @@ Fluxo implementado:
    - envia cliente para Agendor;
    - dispara payload para Autentique.
 
-## Deploy na VPS (Git clone + domínio)
-1. Faça `git clone` deste repositório na VPS.
-2. Crie o arquivo `.env` com as variáveis (`SESSION_SECRET`, `AGENDOR_TOKEN`, `AUTENTIQUE_TOKEN`, etc.).
-3. Suba a aplicação com Docker Compose:
-   ```bash
-   docker compose up -d --build
-   ```
-4. Configure o Nginx (ou Traefik/Caddy) para redirecionar `sistema.nexuscoreautomacao.com` para `127.0.0.1:8000`.
-5. Como o acesso será por subdomínio, mantenha `ROOT_PATH` vazio (ou remova a variável).
+## Deploy no GitHub + domínio
+1. Suba este projeto no GitHub.
+2. Faça deploy em um serviço compatível com FastAPI (Railway, Render, Fly.io, VPS).
+3. Configure proxy reverso para mapear `nexuscoreautomacao.com/microsaas` para a app.
+4. Defina `ROOT_PATH=/microsaas` para corrigir rotas.
 
-Arquivos de infraestrutura incluídos no repositório:
-- `Dockerfile`
-- `docker-compose.yml`
+Exemplo `Dockerfile`:
+```dockerfile
+FROM python:3.12-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+```
