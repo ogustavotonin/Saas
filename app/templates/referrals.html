@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="two-col">
+<form class="card" method="post" action="/referrals">
+  <h3>Nova indicação</h3>
+  <input name="referrer_name" placeholder="Nome do indicador" required>
+  <input name="referrer_email" placeholder="E-mail do indicador" required>
+  <select name="referred_client_id" required>{% for c in clients %}<option value="{{c.id}}">{{c.name}}</option>{% endfor %}</select>
+  <input name="sale_value" type="number" step="0.01" placeholder="Valor estimado da venda" required>
+  <button type="submit">Cadastrar indicação</button>
+</form>
+<div class="card"><h3>Indicações</h3>
+<table><tr><th>Indicador</th><th>Valor</th><th>Fechou?</th><th>Bônus</th><th>Pontos</th><th>Ação</th></tr>
+{% for r in referrals %}<tr>
+<td>{{r.referrer_name}}</td><td>R$ {{'%.2f'|format(r.sale_value)}}</td><td>{{'Sim' if r.sale_closed else 'Não'}}</td><td>R$ {{'%.2f'|format(r.bonus_value)}}</td><td>{{r.points_awarded}}</td>
+<td>{% if not r.sale_closed %}<form method="post" action="/referrals/{{r.id}}/close"><button>Fechar venda</button></form>{% endif %}</td>
+</tr>{% endfor %}</table>
+</div></div>
+{% endblock %}

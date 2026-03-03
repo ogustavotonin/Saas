@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="grid">
+  <article class="card"><h3>Clientes</h3><p>{{ data.clients }}</p></article>
+  <article class="card"><h3>Assinaturas Ativas</h3><p>{{ data.active_subscriptions }}</p></article>
+  <article class="card"><h3>Indicações em Aberto</h3><p>{{ data.open_referrals }}</p></article>
+  <article class="card"><h3>Histórico de Manutenções</h3><p>{{ data.maintenances }}</p></article>
+</section>
+{% endblock %}

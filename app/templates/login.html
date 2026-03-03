@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><link rel="stylesheet" href="/static/style.css"><title>Login</title></head>
+<body>
+  <main class="card">
+    <h2>Acesso ao Micro SaaS</h2>
+    <form method="post" action="/login">
+      <label>Usuário <input name="username" required></label>
+      <label>Senha <input name="password" type="password" required></label>
+      <button type="submit">Entrar</button>
+    </form>
+    <p>Usuário padrão: admin / admin123</p>
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+  </main>
+</body></html>

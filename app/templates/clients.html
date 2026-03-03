@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="two-col">
+<form class="card" method="post" action="/clients">
+  <h3>Novo cliente</h3>
+  <input name="name" placeholder="Nome" required>
+  <input name="email" placeholder="E-mail" required>
+  <input name="phone" placeholder="Telefone" required>
+  <button type="submit">Salvar</button>
+</form>
+<div class="card"><h3>Clientes cadastrados</h3>
+<table><tr><th>Nome</th><th>E-mail</th><th>Telefone</th><th>Pontos</th></tr>
+{% for c in clients %}<tr><td>{{c.name}}</td><td>{{c.email}}</td><td>{{c.phone}}</td><td>{{c.points_balance}}</td></tr>{% endfor %}
+</table></div>
+</div>
+{% endblock %}

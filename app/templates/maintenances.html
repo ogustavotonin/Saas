@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="two-col">
+<form class="card" method="post" action="/maintenances">
+  <h3>Registrar manutenção</h3>
+  <input name="title" placeholder="Título" required>
+  <textarea name="notes" placeholder="Detalhes"></textarea>
+  <select name="client_id" required>{% for c in clients %}<option value="{{c.id}}">{{c.name}}</option>{% endfor %}</select>
+  <input name="maintenance_date" type="date" required>
+  <button type="submit">Salvar</button>
+</form>
+<div class="card"><h3>Histórico</h3>
+<table><tr><th>Cliente ID</th><th>Título</th><th>Data</th><th>Notas</th></tr>
+{% for m in maintenances %}<tr><td>{{m.client_id}}</td><td>{{m.title}}</td><td>{{m.date}}</td><td>{{m.notes}}</td></tr>{% endfor %}
+</table></div></div>
+{% endblock %}
