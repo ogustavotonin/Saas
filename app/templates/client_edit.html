@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<form class="card max-600" method="post" action="/clients/{{client.id}}/edit">
+  <h3>Editar cliente</h3>
+  <input name="name" value="{{client.name}}" required>
+  <input name="email" value="{{client.email}}" required>
+  <input name="phone" value="{{client.phone}}" required>
+  <input name="points_balance" type="number" value="{{client.points_balance}}" required>
+  <button type="submit">Salvar alterações</button>
+</form>
+{% endblock %}

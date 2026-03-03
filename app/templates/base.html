@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>NexusCore Micro SaaS</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menu">☰</button>
+    <h1>NexusCore Micro SaaS</h1>
+  </header>
+
+  <aside class="sidebar" id="sidebar">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/clients">Clientes</a>
+    <a href="/referrals">Indicações</a>
+    <a href="/subscriptions">Assinaturas</a>
+    <a href="/maintenances">Manutenções</a>
+    <a href="/integrations">Integrações</a>
+    <a href="/security/password">Segurança</a>
+    <a href="/logout">Sair</a>
+  </aside>
+
+  <main class="content">{% block content %}{% endblock %}</main>
+
+  <script>
+    const btn = document.getElementById('hamburgerBtn');
+    const sidebar = document.getElementById('sidebar');
+    btn?.addEventListener('click', () => sidebar.classList.toggle('open'));
+  </script>
+</body>
+</html>

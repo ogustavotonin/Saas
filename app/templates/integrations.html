@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h3>Integrações - Agendor</h3>
+  <p>Use os botões abaixo para importar negócios do Agendor e revisar os últimos resultados.</p>
+  <form method="post" action="/integrations/import-agendor">
+    <button type="submit">Importar negócios do Agendor</button>
+  </form>
+  {% if error %}<p class="error">{{ error }}</p>{% endif %}
+</div>
+
+<div class="card">
+  <h3>Negócios importados</h3>
+  <table>
+    <tr><th>ID</th><th>Título</th><th>Status</th><th>Valor</th></tr>
+    {% for d in deals %}
+      <tr>
+        <td>{{ d.get('id', '-') }}</td>
+        <td>{{ d.get('title', d.get('name', '-')) }}</td>
+        <td>{{ d.get('status', '-') }}</td>
+        <td>{{ d.get('value', '-') }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}
