@@ -1,0 +1,9 @@
+services:
+  saas:
+    build: .
+    restart: always
+    env_file: .env
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - /opt/saas-data/microsaas.db:/app/microsaas.db
