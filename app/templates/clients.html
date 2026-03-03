@@ -9,16 +9,8 @@
   <button type="submit">Salvar</button>
 </form>
 <div class="card"><h3>Clientes cadastrados</h3>
-<table><tr><th>Nome</th><th>E-mail</th><th>Telefone</th><th>Pontos</th><th>Ações</th></tr>
-{% for c in clients %}
-<tr>
-  <td>{{c.name}}</td><td>{{c.email}}</td><td>{{c.phone}}</td><td>{{c.points_balance}}</td>
-  <td class="actions">
-    <a class="btn" href="/clients/{{c.id}}/edit">Editar</a>
-    <form method="post" action="/clients/{{c.id}}/delete"><button class="btn danger">Excluir</button></form>
-  </td>
-</tr>
-{% endfor %}
+<table><tr><th>Nome</th><th>E-mail</th><th>Telefone</th><th>Pontos</th></tr>
+{% for c in clients %}<tr><td>{{c.name}}</td><td>{{c.email}}</td><td>{{c.phone}}</td><td>{{c.points_balance}}</td></tr>{% endfor %}
 </table></div>
 </div>
 {% endblock %}
